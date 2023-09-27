@@ -1,0 +1,34 @@
+{
+  "name": "libby",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libby/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libby",
+        "main": "libby/src/index.ts",
+        "tsConfig": "libby/tsconfig.lib.json",
+        "assets": ["libby/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libby/**/*.ts", "libby/package.json"]
+      }
+    },
+    "test": {
+      "executor": "@nx/vite:test",
+      "outputs": ["{options.reportsDirectory}"],
+      "options": {
+        "passWithNoTests": true,
+        "reportsDirectory": "../coverage/libby"
+      }
+    }
+  },
+  "tags": []
+}
